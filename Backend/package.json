@@ -1,0 +1,35 @@
+{
+  "name": "-",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "build": "npm install && tsc",
+    "dev": "nodemon ./src/server.ts",
+    "start": "dist/server.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "Adaobi Chuks-Aginam",
+  "license": "ISC",
+  "dependencies": {
+    "@types/multer": "^1.4.12",
+    "cloudinary": "^2.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "joi": "^17.12.2",
+    "mongoose": "^8.6.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "pino": "^8.19.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/morgan": "^1.9.9"
+  }
+}
