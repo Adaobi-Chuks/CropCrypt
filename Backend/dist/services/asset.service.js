@@ -96,7 +96,7 @@ class AssetService {
                 // Deduct shares
                 asset.sharesRemaining -= shares;
                 // Update the asset with the reduced shares
-                yield AssetRepository.updateById(assetId, asset);
+                yield asset.save();
                 // Create a transaction record
                 const transaction = yield transaction_model_1.default.create({
                     assetId,

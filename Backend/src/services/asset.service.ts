@@ -96,7 +96,7 @@ export default class AssetService {
             asset.sharesRemaining -= shares;
 
             // Update the asset with the reduced shares
-            await AssetRepository.updateById(assetId, asset);
+            await asset.save();
 
             // Create a transaction record
             const transaction = await Transaction.create({
