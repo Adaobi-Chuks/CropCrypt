@@ -21,7 +21,7 @@ const createSchema = Joi.object({
 const buySchema = Joi.object({
     assetId: Joi.string().required().trim(),
     userId: Joi.string().required().trim(),
-    sharesBought: Joi.number().required()
+    shares: Joi.number().required()
 });
 
 export {
