@@ -23,6 +23,10 @@ const assetSchema = new mongoose_1.Schema({
         type: String,
         trim: true
     },
+    location: {
+        type: String,
+        trim: true
+    },
     amount: {
         type: Number,
         trim: true
@@ -48,7 +52,7 @@ const assetSchema = new mongoose_1.Schema({
         default: 0
     },
     size: {
-        type: String,
+        type: Number,
         trim: true
     },
     pofoUrl: {

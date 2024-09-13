@@ -23,6 +23,10 @@ const assetSchema = new Schema<IAsset>({
         type: String,
         trim: true
     },
+    location: {
+        type: String,
+        trim: true
+    },
     amount: {
         type: Number,
         trim: true
@@ -48,7 +52,7 @@ const assetSchema = new Schema<IAsset>({
         default: 0
     },
     size: {
-        type: String,
+        type: Number,
         trim: true
     },
     pofoUrl: {
