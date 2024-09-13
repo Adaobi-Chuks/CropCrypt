@@ -26,6 +26,6 @@ exports.createSchema = createSchema;
 const buySchema = joi_1.default.object({
     assetId: joi_1.default.string().required().trim(),
     userId: joi_1.default.string().required().trim(),
-    sharesBought: joi_1.default.number().required()
+    shares: joi_1.default.number().required()
 });
 exports.buySchema = buySchema;
