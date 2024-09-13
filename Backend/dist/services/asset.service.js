@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const base_repository_1 = __importDefault(require("../repositories/base.repository"));
 const asset_model_1 = __importDefault(require("../models/asset.model"));
+const transaction_model_1 = __importDefault(require("../models/transaction.model"));
 const httpException_util_1 = __importDefault(require("../utils/helpers/httpException.util"));
 const statusCodes_util_1 = require("../utils/statusCodes.util");
 const AssetRepository = new base_repository_1.default(asset_model_1.default);
@@ -79,6 +80,33 @@ class AssetService {
                     throw error;
                 }
                 throw new httpException_util_1.default(statusCodes_util_1.INTERNAL_SERVER_ERROR, `Error deleting asset: ${error.message}`);
+            }
+        });
+    }
+    buyAsset(assetId, userId, shares) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const asset = yield AssetRepository.findById(assetId);
+                if (!asset)
+                    throw new httpException_util_1.default(statusCodes_util_1.NOT_FOUND, "Asset not found");
+                // Check if enough shares are available
+                if (asset.sharesRemaining < shares) {
+                    throw new httpException_util_1.default(statusCodes_util_1.INTERNAL_SERVER_ERROR, "Not enough shares available");
+                }
+                // Deduct shares
+                asset.sharesRemaining -= shares;
+                // Update the asset with the reduced shares
+                yield AssetRepository.updateById(assetId, asset);
+                // Create a transaction record
+                const transaction = yield transaction_model_1.default.create({
+                    assetId,
+                    userId,
+                    sharesBought: shares
+                });
+                return { asset, transaction };
+            }
+            catch (error) {
+                throw new httpException_util_1.default(statusCodes_util_1.INTERNAL_SERVER_ERROR, error.message);
             }
         });
     }

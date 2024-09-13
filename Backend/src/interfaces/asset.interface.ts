@@ -11,6 +11,7 @@ export default interface ICampaign extends Document {
     purpose: string;
     timeline: string;
     shares: number;
+    sharesRemaining: number;
     size: string;
     pofoUrl: string;
     aoiUrl: string;

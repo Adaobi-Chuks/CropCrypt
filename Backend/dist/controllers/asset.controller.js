@@ -21,6 +21,7 @@ class AssetController {
     createAsset(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                req.body.sharesRemaining = req.body.shares;
                 const asset = yield AssetService.create(req.body);
                 return new response_util_1.default(statusCodes_util_1.OK, true, "Asset created successfully", res, asset);
             }
@@ -79,6 +80,22 @@ class AssetController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 return new response_util_1.default(statusCodes_util_1.OK, true, "Creators paid successfully", res);
+            }
+            catch (error) {
+                if (error instanceof httpException_util_1.default) {
+                    return new response_util_1.default(error.status, false, error.message, res);
+                }
+                return new response_util_1.default(statusCodes_util_1.INTERNAL_SERVER_ERROR, false, `Error: ${error.message}`, res);
+            }
+        });
+    }
+    buyAsset(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { assetId, userId, shares } = req.body;
+                // Call the service method to handle the asset purchase
+                const { asset, transaction } = yield AssetService.buyAsset(assetId, userId, shares);
+                return new response_util_1.default(statusCodes_util_1.OK, true, "Shares purchased successfully", res, { asset, transaction });
             }
             catch (error) {
                 if (error instanceof httpException_util_1.default) {

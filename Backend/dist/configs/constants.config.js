@@ -6,7 +6,8 @@ exports.JWT_SECRET = process.env.JWT_SECRET;
 exports.BASEPATH = "/api/v1";
 exports.DATABASES = {
     ASSET: "Asset",
-    SUBMISSION: "Submission"
+    SUBMISSION: "Submission",
+    TRANSACTION: "Transaction"
 };
 exports.MAXAGE = 3 * 24 * 60 * 60;
 exports.MESSAGES = {

@@ -3,7 +3,8 @@ export const JWT_SECRET = process.env.JWT_SECRET;
 export const BASEPATH = "/api/v1";
 export const DATABASES = {
     ASSET: "Asset",
-    SUBMISSION: "Submission"
+    SUBMISSION: "Submission",
+    TRANSACTION: "Transaction"
 };
 export const MAXAGE = 3 * 24 * 60 * 60;
 export const MESSAGES = {

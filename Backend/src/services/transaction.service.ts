@@ -1,6 +1,6 @@
-import ISubmission from "../interfaces/submission.interface";
+import ISubmission from "../interfaces/transaction.interface";
 import BaseRepository from "../repositories/base.repository";
-import Submission from "../models/submission.model";
+import Submission from "../models/transaction.model";
 import HttpException from "../utils/helpers/httpException.util";
 import { INTERNAL_SERVER_ERROR, NOT_FOUND } from "../utils/statusCodes.util";
 const SubmissionRepository = new BaseRepository(

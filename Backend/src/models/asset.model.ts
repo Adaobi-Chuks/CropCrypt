@@ -43,6 +43,10 @@ const assetSchema = new Schema<IAsset>({
         type: Number,
         trim: true
     },
+    sharesRemaining: {
+        type: Number, 
+        default: 0
+    },
     size: {
         type: String,
         trim: true

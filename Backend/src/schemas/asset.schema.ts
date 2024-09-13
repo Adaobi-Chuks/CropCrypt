@@ -18,6 +18,13 @@ const createSchema = Joi.object({
     cocUrl: Joi.string().required().trim()
 });
 
+const buySchema = Joi.object({
+    assetId: Joi.string().required().trim(),
+    userId: Joi.string().required().trim(),
+    sharesBought: Joi.number().required()
+});
+
 export {
-    createSchema
+    createSchema,
+    buySchema
 }

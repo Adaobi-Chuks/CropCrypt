@@ -43,6 +43,10 @@ const assetSchema = new mongoose_1.Schema({
         type: Number,
         trim: true
     },
+    sharesRemaining: {
+        type: Number,
+        default: 0
+    },
     size: {
         type: String,
         trim: true

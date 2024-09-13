@@ -5,7 +5,7 @@ import CustomResponse from "../utils/helpers/response.util";
 import HttpException from "../utils/helpers/httpException.util";
 import { INTERNAL_SERVER_ERROR, OK } from "../utils/statusCodes.util";
 import Asset from "../services/asset.service";
-import Submission from "../services/submission.service";
+import Submission from "../services/transaction.service";
 const AssetService = new Asset();
 
 export default class AssetController {
@@ -14,6 +14,7 @@ export default class AssetController {
 
         try {
 
+            req.body.sharesRemaining = req.body.shares;
             const asset = await AssetService.create(req.body);
 
             return new CustomResponse(OK, true, "Asset created successfully", res, asset);
@@ -87,6 +88,23 @@ export default class AssetController {
 
 
             return new CustomResponse(OK, true, "Creators paid successfully", res);
+        } catch (error: any) {
+            if (error instanceof HttpException) {
+                return new CustomResponse(error.status, false, error.message, res);
+            }
+            return new CustomResponse(INTERNAL_SERVER_ERROR, false, `Error: ${error.message}`, res);
+        }
+    }
+
+    async buyAsset(req: Request, res: Response) {
+        try {
+            const { assetId, userId, shares } = req.body;
+
+            // Call the service method to handle the asset purchase
+            const { asset, transaction } = await AssetService.buyAsset(assetId, userId, shares);
+
+            return new CustomResponse(OK, true, "Shares purchased successfully", res, { asset, transaction });
+
         } catch (error: any) {
             if (error instanceof HttpException) {
                 return new CustomResponse(error.status, false, error.message, res);

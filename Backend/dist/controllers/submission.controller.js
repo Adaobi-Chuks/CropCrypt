@@ -15,8 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const response_util_1 = __importDefault(require("../utils/helpers/response.util"));
 const httpException_util_1 = __importDefault(require("../utils/helpers/httpException.util"));
 const statusCodes_util_1 = require("../utils/statusCodes.util");
-const submission_service_1 = __importDefault(require("../services/submission.service"));
-const SubmissionService = new submission_service_1.default();
+const transaction_service_1 = __importDefault(require("../services/transaction.service"));
+const SubmissionService = new transaction_service_1.default();
 class SubmissionController {
     createSubmission(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
